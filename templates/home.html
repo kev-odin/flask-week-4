@@ -32,6 +32,9 @@
 		{% for wiki in myData %}
 			<tr>
 				<td>{{ loop.index }}</td>
+        <td class="w-15">
+          <p>No Image Available</p>
+        </td>
 				<td>{{ wiki['text']}}</td>			
 				<td>{{ wiki['year']}}</td>			
 			</tr>
