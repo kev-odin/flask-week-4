@@ -1,22 +1,39 @@
 {% extends "base.html" %}
 {% set active_page = 'home' %}
-{% block title %} TCSS506 {% endblock %}
+{% block title %} Home {% endblock %}
 {% block content %}
+<div class="w-50">
+  <div class="row">
+    <div class="col">
+      <label for="inputEmail4">Enter Date:</label>
+      <input type="text" class="form-control" placeholder="MM/DD/YYYY">
+    </div>
+    <div class="col">
+      <label for="inputEmail4">Number of Entries:</label>
+      <input type="text" class="form-control" placeholder="Choose between 1-20">
+      <br>
+    </div>
+    <button type="button" class="btn btn-warning">Search</button>
+  </div>
+</div>
+
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Image</th>
       <th scope="col">Name</th>
-      <th scope="col">Rating</th>
+      <th scope="col">Birth Year</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-		{% for business in myData %}
+		{% for wiki in myData %}
 			<tr>
-				<td>{{ loop.index0 }}</td>
-				<td>{{ business['name']}}</td>			
-				<td>{{ business['rating']}}</td>			
+				<td>{{ loop.index }}</td>
+				<td>{{ wiki['text']}}</td>			
+				<td>{{ wiki['year']}}</td>			
 			</tr>
 		
         {% endfor %}

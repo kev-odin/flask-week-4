@@ -1,7 +1,7 @@
 import requests
 
 
-def findBirths(monthDay, year, size=10):
+def find_births(monthDay="06/02", year="1993", size=10):
     # monthDay is in form "mm/dd"
     # year is in form "yyyy"
     # returns a list of names, birth years and thumbnails
@@ -26,12 +26,14 @@ def findBirths(monthDay, year, size=10):
 
 
 def text_data(raw_json: dict):
-    return [item["text"] for item in raw_json]
+    names = [item["text"] for item in raw_json]
+    years = [item["year"] for item in raw_json]
+    image = [item["thumbnail"] for item in raw_json]
+    return zip(names,years,image)
 
 
 if __name__ == "__main__":
-    input_month_slash_day = "06/02"
-    input_year = "1993"
-    res = findBirths(input_month_slash_day, input_year)
+    res = find_births()
+    stop=0
     for item in text_data(res):
         print(item)
