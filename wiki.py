@@ -1,7 +1,7 @@
 import requests
 
 
-def find_birthdays(monthDay="04/29", year="2022", size=10):
+def find_birthdays(monthDay, year, size=10):
     # monthDay is in form "mm/dd"
     # year is in form "yyyy"
     # returns a list of names, birth years and thumbnails
