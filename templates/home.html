@@ -17,7 +17,6 @@
   </div>
 </div>
 
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -27,20 +26,18 @@
       <th scope="col">Birth Year</th>
     </tr>
   </thead>
+  
   <tbody>
     <tr>
 		{% for wiki in myData %}
 			<tr>
-				<td>{{ loop.index }}</td>
-        <td class="w-15">
-          <p>No Image Available</p>
-        </td>
-				<td>{{ wiki['text']}}</td>			
-				<td>{{ wiki['year']}}</td>			
+				<td class="align-middle">{{ loop.index }}</td>
+        <td class="align-middle"> <img src={{ wiki["thumbnail"]}} class="img-thumbnail" style="max-height:50px;max-width:50px;"></td>>
+				<td class="align-middle">{{ wiki['text']}}</td>			
+				<td class="align-middle">{{ wiki['year']}}</td>			
 			</tr>
-		
-        {% endfor %}
+    {% endfor %}
     </tr>
   </tbody>
 </table>
- {% endblock %}
+{% endblock %}
