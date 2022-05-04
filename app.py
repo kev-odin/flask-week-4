@@ -1,7 +1,7 @@
 from datetime import date
 from flask import Flask, render_template, request, redirect
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, DateField
 from wtforms.validators import DataRequired, Length, EqualTo, Email, NumberRange
 from wiki import find_births
 
@@ -17,14 +17,14 @@ class loginForm(FlaskForm):
 class searchForm(FlaskForm):
     min_entry = 1
     max_entry = 20
-    date = StringField(validators=[DataRequired()])
+    date = DateField(validators=[DataRequired()])
     entries = IntegerField(
         validators=[
             DataRequired(),
             NumberRange(
                 min=min_entry,
                 max=max_entry,
-                message=f"Values are only valid between {min_entry}-{max_entry}",
+                message=f"Values are only valid between {min_entry}-{max_entry}"
             ),
         ]
     )
