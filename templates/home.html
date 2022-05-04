@@ -6,21 +6,20 @@
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Image</th>
       <th scope="col">Name</th>
-      <th scope="col">Rating</th>
+      <th scope="col">Birth Year</th>
     </tr>
   </thead>
   <tbody>
-
-		{% for business in myData %}
-			<tr>
-				<td class="align-middle">{{ loop.index0 +1 }}</td>
-				<td class="align-middle"> <img src= {{ business['image_url'] }} class="img-thumbnail" style="max-height:50px;max-width:50px;"> {{business['name']}}</td>			
-				<td class="align-middle">{{ business['rating']}}</td>			
-			</tr>
-		
-        {% endfor %}
-
+    {% for entry in myData %}
+    <tr>
+      <td class="align-middle">{{ loop.index0 +1 }}</td>
+      <td class="align-middle"> <img src= {{ entry['image_url'] }} class="img-thumbnail" style="max-height:50px;max-width:50px;">
+      <td class="align-middle">{{ entry['name'] }}</td>			
+      <td class="align-middle">{{ entry['year'] }}</td>
+    </tr>
+    {% endfor %}
   </tbody>
 </table>
- {% endblock %}
+{% endblock %}

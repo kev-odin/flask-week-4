@@ -24,16 +24,3 @@ def find_birthdays(monthDay="04/29", year="2022", size=10):
             item["thumbnail"] = item["pages"][0]["thumbnail"]["source"]
     return sortedbyClosestYear
 
-
-def text_data(raw_json: dict):
-    names = [item["text"] for item in raw_json]
-    years = [item["year"] for item in raw_json]
-    image = [item["thumbnail"] for item in raw_json]
-    return zip(names, years, image)
-
-
-if __name__ == "__main__":
-    res = find_birthdays()
-    stop = 0
-    for item in text_data(res):
-        print(item)
