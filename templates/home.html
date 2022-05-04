@@ -2,42 +2,25 @@
 {% set active_page = 'home' %}
 {% block title %} Home {% endblock %}
 {% block content %}
-<div class="w-50">
-  <div class="row">
-    <div class="col">
-      <label for="inputEmail4">Enter Date:</label>
-      <input type="text" class="form-control" placeholder="MM/DD/YYYY">
-    </div>
-    <div class="col">
-      <label for="inputEmail4">Number of Entries:</label>
-      <input type="text" class="form-control" placeholder="Choose between 1-20">
-      <br>
-    </div>
-    <button type="button" class="btn btn-warning">Search</button>
-  </div>
-</div>
-
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Image</th>
       <th scope="col">Name</th>
-      <th scope="col">Birth Year</th>
+      <th scope="col">Rating</th>
     </tr>
   </thead>
-  
   <tbody>
-    <tr>
-		{% for wiki in myData %}
+
+		{% for business in myData %}
 			<tr>
-				<td class="align-middle">{{ loop.index }}</td>
-        <td class="align-middle"> <img src={{ wiki["thumbnail"]}} class="img-thumbnail" style="max-height:75px;max-width:75px;"></td>>
-				<td class="align-middle">{{ wiki['text']}}</td>			
-				<td class="align-middle">{{ wiki['year']}}</td>			
+				<td class="align-middle">{{ loop.index0 +1 }}</td>
+				<td class="align-middle"> <img src= {{ business['image_url'] }} class="img-thumbnail" style="max-height:50px;max-width:50px;"> {{business['name']}}</td>			
+				<td class="align-middle">{{ business['rating']}}</td>			
 			</tr>
-    {% endfor %}
-    </tr>
+		
+        {% endfor %}
+
   </tbody>
 </table>
-{% endblock %}
+ {% endblock %}
