@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, flash, url_for
 from flask_wtf import FlaskForm
+from flask_login import current_user, login_user, login_required, logout_user
 from wtforms import StringField, PasswordField, SubmitField, DateField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, NumberRange
-from flask_login import current_user, login_user, login_required, logout_user
 from models import db, login, UserModel
 from wiki import find_birthdays
 
@@ -64,9 +64,10 @@ def index():
     title = "Home App"
     form = SearchBirthday()
     if form.validate_on_submit():
+        print("DEBUG - This form should be submitted.")
         if request.method == "POST":
-            entry = request.form["birthday"]
-            results = request.form["results"]
+            entry = form.get("birthday")
+            results = form.get("results")
             month = f"{entry[5:7]}/{entry[8:10]}"
             year = entry[0:4]
             return render_template(
@@ -76,7 +77,10 @@ def index():
                 myData=find_birthdays(month, year, results),
             )
     return render_template(
-        "home.html", title=title, form=form, myData=find_birthdays("06/02", "1993", 10)
+        "home.html",
+        title=title,
+        form=form,
+        myData=find_birthdays("06/02", "1993", 10),
     )
 
 

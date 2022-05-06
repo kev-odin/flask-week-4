@@ -1,7 +1,7 @@
 import requests
 
 
-def find_birthdays(monthDay, year, size):
+def find_birthdays(monthDay, year, size=10):
     # monthDay is in form "mm/dd"
     # year is in form "yyyy"
     # returns a list of names, birth years and thumbnails
@@ -19,7 +19,10 @@ def find_birthdays(monthDay, year, size):
     if len(sortedbyClosestYear) > size:
         sortedbyClosestYear = sortedbyClosestYear[0:size]
     for item in sortedbyClosestYear:
-        item["thumbnail"] = "localhost"
+        item[
+            "thumbnail"
+        ] = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+        # item["thumbnail"] = "localhost"
         if "thumbnail" in item["pages"][0]:
             item["thumbnail"] = item["pages"][0]["thumbnail"]["source"]
     return sortedbyClosestYear

@@ -5,29 +5,38 @@
 <div class="w-50">
   <form method="post">
     <div class="form-group">
-      <label for="birthday">Enter birthday</label>
-      
-      <br>
-      <input type="date" class="form-control" 
-      placeholder="Enter date"
-      value="{{ request.form['birthday'] }}"></input>
-      <small class="form-text text-muted">Find people that share your birthday.</small>
-      <br>
-
+      <div class="mb-3">
+        <fieldset class="form-field">
+          {{ form.birthday.label(class="form-label") }}
+          {{ form.birthday(class="form-control") }}
+          {% if form.birthday.errors %}
+            <ul class="errors">
+              {% for error in form.birthday.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </fieldset>
+        <small class="form-text text-muted">Find people that share your birthday.</small>
+      </div>
     </div>
     
     <div class="form-group">
-      <label for="entry count">Number of results</label>
-      
-      <br>
-      <input type="integer" class="form-control" 
-      placeholder="Enter a number between 1-20"
-      value="{{  request.form['results']  }}"></input>
-      <small class="form-text text-muted">Return the number of results.</small>
-      <br>
-
+      <div class="mb-3">
+        <fieldset class="form-field">
+          {{ form.results.label(class="form-label") }}
+          {{ form.results(class="form-control") }}
+          {% if form.results.errors %}
+            <ul class="errors">
+              {% for error in form.results.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </fieldset>
+        <small class="form-text text-muted">Return the number of results.</small>
+      </div>
     </div>
-    
     <button type="Search" class="btn btn-primary">Search!</button>
   </form>
 </div>
