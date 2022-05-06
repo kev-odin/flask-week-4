@@ -83,6 +83,7 @@ def redirectToLogin():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    title = "Login Page"
     form = LoginForm()
     if form.validate_on_submit():
         if request.method == "POST":
@@ -92,11 +93,12 @@ def login():
             if user is not None and user.check_password(pw):
                 login_user(user)
                 return redirect("/home")
-    return render_template("login.html", form=form)
+    return render_template("login.html",title=title,form=form)
 
 
-@app.route("/registration", methods=["GET", "POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
+    title = "Registration Page"
     form = RegisterForm()
     if form.validate_on_submit():
         if request.method == "POST":
@@ -113,7 +115,7 @@ def register():
                 return redirect("/home")
             else:
                 flash("WRONG!")
-    return render_template("registration.html", form=form)
+    return render_template("register.html",title=title,form=form)
 
 
 @app.route("/logout")

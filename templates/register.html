@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% set active_page = 'registration' %}
-{% block title %} Registration {% endblock %}
+{% block title %} {{title}} {% endblock %}
 {% block content %} 
 <div class="w-50">
 <form method="post">
@@ -27,5 +27,5 @@
   {{ form.submit(class="btn btn-danger") }}
 </form>
 </div>
-    <p class="bottom"> Already registered? <a class="bottom" href="{{ url_for('login') }}"> Login Here </a></p>
+    <p class="top"> Already registered? <a class="bottom" href="{{ url_for('login') }}"> Login Here </a></p>
 {% endblock %}
