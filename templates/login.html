@@ -15,14 +15,14 @@
               <li>{{ error }}</li>
               {% endfor %}
             </ul>
-    {% endif %}	
+    {% endif %}
     </fieldset>
   </div>
   <div class="mb-3">
   <fieldset class="form-field">
     {{ form.password.label(class="form-label") }}
     {{ form.password(class="form-control") }} 	
-    </fieldset>
+  </fieldset>
   </div>
   {{ form.submit(class="btn btn-primary") }}
 </form>

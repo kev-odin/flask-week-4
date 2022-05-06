@@ -23,4 +23,3 @@ def find_birthdays(monthDay, year, size=10):
         if "thumbnail" in item["pages"][0]:
             item["thumbnail"] = item["pages"][0]["thumbnail"]["source"]
     return sortedbyClosestYear
-
