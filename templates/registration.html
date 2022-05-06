@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% set active_page = 'login' %}
-{% block title %} Login {% endblock %}
+{% set active_page = 'registration' %}
+{% block title %} Registration {% endblock %}
 {% block content %} 
 <div class="w-50">
 <form method="post">
@@ -24,8 +24,8 @@
     {{ form.password(class="form-control") }} 	
   </fieldset>
   </div>
-  {{ form.submit(class="btn btn-primary") }}
+  {{ form.submit(class="btn btn-danger") }}
 </form>
 </div>
-<p class="bottom">Do you need an account? <a class="bottom" href="{{ url_for('register') }}">Create account</a></p>
+    <p class="bottom"> Already registered? <a class="bottom" href="{{ url_for('login') }}"> Login Here </a></p>
 {% endblock %}
