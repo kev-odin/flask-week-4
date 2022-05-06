@@ -25,7 +25,7 @@ class RegisterForm(FlaskForm):
 
 class SearchBirthday(FlaskForm):
     birthday = DateField(label="Enter birthday", validators=[DataRequired()])
-    num_results = IntegerField(
+    results = IntegerField(
         label="Number of results",
         validators=[DataRequired(), NumberRange(min=1, max=20)],
     )
@@ -60,14 +60,14 @@ def create_table():
 
 @app.route("/home", methods=["GET", "POST"])
 @login_required
-def home():
+def index():
     title = "Home App"
     form = SearchBirthday()
     if form.validate_on_submit():
         if request.method == "POST":
             entry = request.form["birthday"]
             results = request.form["results"]
-            month = f"{entry[5:7]} / {entry[8:10]}"
+            month = f"{entry[5:7]}/{entry[8:10]}"
             year = entry[0:4]
             return render_template(
                 "home.html",
