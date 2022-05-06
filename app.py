@@ -60,7 +60,8 @@ def create_table():
 
 @app.route("/home", methods=["GET", "POST"])
 @login_required
-def search_dates():
+def home():
+    title = "Home App"
     form = SearchBirthday()
     if form.validate_on_submit():
         if request.method == "POST":
@@ -69,10 +70,13 @@ def search_dates():
             month = f"{entry[5:7]} / {entry[8:10]}"
             year = entry[0:4]
             return render_template(
-                "home.html", form=form, myData=find_birthdays(month, year, results)
+                "home.html",
+                title=title,
+                form=form,
+                myData=find_birthdays(month, year, results),
             )
     return render_template(
-        "home.html", form=form, myData=find_birthdays("06/02", "1993", 10)
+        "home.html", title=title, form=form, myData=find_birthdays("06/02", "1993", 10)
     )
 
 
@@ -93,7 +97,7 @@ def login():
             if user is not None and user.check_password(pw):
                 login_user(user)
                 return redirect("/home")
-    return render_template("login.html",title=title,form=form)
+    return render_template("login.html", title=title, form=form)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -115,7 +119,7 @@ def register():
                 return redirect("/home")
             else:
                 flash("WRONG!")
-    return render_template("register.html",title=title,form=form)
+    return render_template("register.html", title=title, form=form)
 
 
 @app.route("/logout")
