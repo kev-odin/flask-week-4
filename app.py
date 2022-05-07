@@ -29,7 +29,7 @@ class SearchBirthday(FlaskForm):
         label="Number of results",
         validators=[DataRequired(), NumberRange(min=1, max=20)],
     )
-    submit = SubmitField(label="Search")
+    submit = SubmitField(label="Search!")
 
 
 app = Flask(__name__)
@@ -60,14 +60,14 @@ def create_table():
 
 @app.route("/home", methods=["GET", "POST"])
 @login_required
-def index():
+def home():
     title = "Home App"
     form = SearchBirthday()
+
     if form.validate_on_submit():
-        print("DEBUG - This form should be submitted.")
         if request.method == "POST":
-            entry = form.get("birthday")
-            results = form.get("results")
+            entry = request.form["birthday"]
+            results = request.form["results"]
             month = f"{entry[5:7]}/{entry[8:10]}"
             year = entry[0:4]
             return render_template(
@@ -76,12 +76,7 @@ def index():
                 form=form,
                 myData=find_birthdays(month, year, results),
             )
-    return render_template(
-        "home.html",
-        title=title,
-        form=form,
-        myData=find_birthdays("06/02", "1993", 10),
-    )
+    return render_template("home.html", title=title, form=form)
 
 
 @app.route("/")
@@ -93,6 +88,7 @@ def redirectToLogin():
 def login():
     title = "Login Page"
     form = LoginForm()
+
     if form.validate_on_submit():
         if request.method == "POST":
             email = request.form["email"]
@@ -108,6 +104,7 @@ def login():
 def register():
     title = "Registration Page"
     form = RegisterForm()
+
     if form.validate_on_submit():
         if request.method == "POST":
             email = request.form["email"]
@@ -130,12 +127,6 @@ def register():
 def logout():
     logout_user()
     return redirect("/login")
-
-
-@app.route("/forbidden", methods=["GET", "POST"])
-@login_required
-def protected():
-    return redirect(url_for("forbidden.html"))
 
 
 if __name__ == "__main__":

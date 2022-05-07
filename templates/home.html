@@ -4,6 +4,8 @@
 {% block content %}
 <div class="w-50">
   <form method="post">
+    {{ form.csrf_token }}
+    
     <div class="form-group">
       <div class="mb-3">
         <fieldset class="form-field">
@@ -37,7 +39,7 @@
         <small class="form-text text-muted">Return the number of results.</small>
       </div>
     </div>
-    <button type="Search" class="btn btn-primary">Search!</button>
+    {{ form.submit(class="btn btn-primary") }}
   </form>
 </div>
 
