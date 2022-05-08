@@ -97,6 +97,8 @@ def login():
             if user is not None and user.check_password(pw):
                 login_user(user)
                 return redirect("/home")
+            elif user is not None and not user.check_password(pw):
+                flash(f"Incorrect email or password. Please try again.")
     return render_template("login.html", title=title, form=form)
 
 
@@ -115,11 +117,10 @@ def register():
                 flash("Registration Completed!")
                 return redirect("/login")
             elif user is not None and user.check_password(password):
-                flash(f"Welcome {user}!")
                 login_user(user)
                 return redirect("/home")
             else:
-                flash("WRONG!")
+                flash("Email has already been taken. Please try another email.")
     return render_template("register.html", title=title, form=form)
 
 
