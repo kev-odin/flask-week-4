@@ -50,6 +50,7 @@ def add_user(email, password):
     db.session.add(user)
     db.session.commit()
 
+
 def current_date(info: str):
     if info == "today":
         month = dt.datetime.now().strftime("%m")
@@ -57,6 +58,7 @@ def current_date(info: str):
         return f"{month}/{day}"
     elif info == "year":
         return dt.datetime.now().strftime("%Y")
+
 
 @app.before_first_request
 def create_table():
