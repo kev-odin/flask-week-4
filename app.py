@@ -1,3 +1,4 @@
+import datetime as dt
 from flask import Flask, render_template, request, redirect, flash, url_for
 from flask_wtf import FlaskForm
 from flask_login import current_user, login_user, login_required, logout_user
@@ -49,6 +50,13 @@ def add_user(email, password):
     db.session.add(user)
     db.session.commit()
 
+def current_date(info: str):
+    if info == "today":
+        month = dt.datetime.now().strftime("%m")
+        day = dt.datetime.now().strftime("%d")
+        return f"{month}/{day}"
+    elif info == "year":
+        return dt.datetime.now().strftime("%Y")
 
 @app.before_first_request
 def create_table():
@@ -63,6 +71,7 @@ def create_table():
 def home():
     title = "Home App"
     form = SearchBirthday()
+    myData = find_birthdays(current_date("today"), current_date("year"))
 
     if form.validate_on_submit():
         if request.method == "POST":
@@ -76,7 +85,7 @@ def home():
                 form=form,
                 myData=find_birthdays(month, year, results),
             )
-    return render_template("home.html", title=title, form=form)
+    return render_template("home.html", title=title, form=form, myData=myData)
 
 
 @app.route("/")
